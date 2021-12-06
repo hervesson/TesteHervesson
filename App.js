@@ -1,112 +1,135 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const App = () => {
+   const [email, setEmail] = useState("")
+   const [passWord, setPassWord] = useState("")
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+   return (
+      <SafeAreaView style={styles.background}>
+         <Text style={styles.title}>
+            Log In   
+         </Text>
+         <View style={styles.containerInput}>
+            <View style={styles.viewInput}>
+               <Text style={styles.label}>
+                  EMAIL OR USERNAME
+               </Text>
+               <TextInput
+                  style={styles.input}
+                  onChangeText={value => setEmail(value)}
+                  value={email}
+                  placeholder="Email or Username"
+                  placeholderTextColor="#383838"
+               />
+            </View>
+            <View style={styles.viewInput}>
+               <Text style={styles.label}>
+                  PASSWORD
+               </Text>
+               <TextInput
+                  style={styles.input}
+                  onChangeText={value => setPassWord(value)}
+                  value={passWord}
+                  placeholder="Password"
+                  placeholderTextColor="#383838"
+               />
+            </View>
+         </View>
+         <Text style={styles.forgot}>
+           Forgot Password?
+         </Text>
+         <TouchableOpacity style={styles.button}>
+            <Text style={styles.txtLogin}>
+               Log In
+            </Text>
+         </TouchableOpacity>
+         <View style={styles.account}>
+            <Text style={styles.txtAccount}>
+               Don't have an account?
+            </Text>
+            <Text style={styles.txtAccountUndeline}>
+               Create Account
+            </Text>
+         </View>
+         
+      </SafeAreaView>
+   )
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+   background: {
+      flex: 1,
+      backgroundColor: "black"
+   },
+   title: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 35,
+      paddingTop: 35,
+      paddingLeft: 20
+   },
+   containerInput: {
+      paddingHorizontal: 20,
+      paddingTop: 25
+   },
+   viewInput: {
+      height:100,
+      justifyContent: "space-evenly"
+   },
+   label: {
+      fontSize: 12,
+      color: '#6b6b6b',
+      paddingLeft: 15,
+      fontWeight: '700'
+   },
+   input: {
+      backgroundColor: "#121212",
+      height: 50,
+      borderRadius: 10,
+      paddingHorizontal: 15,
+      color: "#383838",
+      fontSize: 16,
+      fontWeight: "500"
+   },
+   forgot: {
+      color: '#6b6b6b',
+      paddingLeft: 35,
+      textDecorationLine: 'underline',
+      fontSize: 13,
+      fontWeight: "500"
+   },
+   button: {
+      backgroundColor: '#1c1c1c',
+      height: 55,
+      marginHorizontal: 20,
+      marginTop: 20, 
+      borderRadius:10,
+      justifyContent: "center",
+      alignItems: "center"
+   },
+   txtLogin: {
+      fontSize: 16,
+      color: "#707070",
+      fontWeight: 'bold'
+   },
+   account: {
+      flexDirection: 'row',
+      paddingTop: 20
+   },
+   txtAccount: {
+      color: '#6b6b6b',
+      paddingLeft: 35,
+      fontSize: 13,
+      fontWeight: "500"
+   },
+   txtAccountUndeline: {
+      color: '#6b6b6b',
+      paddingLeft: 5,
+      textDecorationLine: 'underline',
+      fontSize: 13,
+      fontWeight: "500"
+   }
+})
 
-export default App;
+export default App
